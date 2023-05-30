@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+		".hooks/": true,
+		".vscode/": false
+    },
+}

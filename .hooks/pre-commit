@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Récupère la branche actuelle
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Vérifie si la branche actuelle est master, develop ou release/*
+if [[ $current_branch == "master" || $current_branch == "develop" || $current_branch == release/* ]]; then
+    echo "Erreur : Les commits directs ne sont pas autorisés sur la branche $current_branch."
+    exit 1
+fi
+
+# Si la branche n'est pas interdite et le merge n'est pas en fast-forward, le commit est autorisé
+exit 0

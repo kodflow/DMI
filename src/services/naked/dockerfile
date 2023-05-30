@@ -1,0 +1,1 @@
+FROM kodmain/hub:alpine as kernel

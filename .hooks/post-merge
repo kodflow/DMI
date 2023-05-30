@@ -1,0 +1,20 @@
+#!/bin/sh
+
+action=$(git log --pretty=oneline --decorate develop | grep 'develop)')
+if [[ "$action" != *"Merge branch"* ]]; then
+	last="$(git log --pretty=oneline --decorate develop | grep 'develop)' | head -1)"
+	if [[ "$last" == *"HEAD"*"->"* ]]; then
+		# MERGE FROM HEAD
+		from="$(git branch --show-current)"
+	else
+		# MERGE FROM UNKNOWN
+		from="$(echo "$last" | grep -oE '\(.*\)' | grep -oE '[a-z0-9A-Z/]+' | grep -v 'origin' | head -1)"
+	fi
+
+	git switch develop
+	git reset --hard "$(git rev-parse origin/develop)"
+	git switch "$from"
+	git push
+	exit 1
+fi
+exit 0
