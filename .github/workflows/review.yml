@@ -2,7 +2,7 @@ name: service/review
 
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "50 11 * * *"
   push:
     branches: [ main ]
 
