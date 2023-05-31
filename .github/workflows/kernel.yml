@@ -1,6 +1,8 @@
 name: kernel
 
-on:
+on:  
+  schedule:
+    - cron: "0 11 * * *"
   push:
     branches: [ main ]
 
