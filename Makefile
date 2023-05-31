@@ -33,16 +33,5 @@ help: #Pour générer automatiquement l'aide ## Display all commands available
 	echo '╚──────────────────────────────────────────────────>'
 	echo ''
 
-workflows: ## Generate workflows
-	@for dir in src/core/*; do \
-		service=$$(basename $$dir); \
-		sed "s/service_name/$$service/g" .sample/core.yml > .github/workflows/$$service.yml; \
-	done
-
-	@for dir in src/service/*; do \
-		service=$$(basename $$dir); \
-		sed "s/service_name/$$service/g" .sample/service.yml > .github/workflows/$$service.yml; \
-	done
-
-publish: workflows ## Publish modification
+publish: ## Publish modification
 	git add . && git commit -m "Update Workflow" && git push
