@@ -9,7 +9,7 @@ RUN apt-get update && apt-get upgrade -y &&\
 
 # ZSH
 RUN echo "ZDOTDIR=/etc/zsh" >> /etc/zsh/zshenv
-RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+RUN wget -qO - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | zsh
 COPY --chown=root:root /etc /etc
 
 RUN usermod -s /bin/zsh -d /home/nobody nobody &&\
