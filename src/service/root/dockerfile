@@ -1,1 +1,3 @@
 FROM kodmain/core:alpine as kernel
+
+USER root:root

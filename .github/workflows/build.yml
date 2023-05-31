@@ -64,14 +64,14 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Build naked
+    - name: Build root
       uses: docker/build-push-action@v4
       with:
-        file: src/service/naked/dockerfile
-        context: src/service/naked
+        file: src/service/root/dockerfile
+        context: src/service/root
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: kodmain/service:naked
+        tags: kodmain/service:root
 
     - name: Build review
       uses: docker/build-push-action@v4
