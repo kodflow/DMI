@@ -43,3 +43,9 @@ publish: build ## Publish all dockers images
 
 run: publish ## Run command
 	docker run -ti --rm --pull=always kodmain/kernel:latest
+
+workflows:
+	@for dir in src/services/*; do \
+		service=$$(basename $$dir); \
+		sed "s/service_name/$$service/g" .sample/template.yml > .github/workflows/$$service.yml; \
+	done

@@ -1,1 +1,1 @@
-FROM kodmain/hub:alpine as kernel
+FROM kodmain/kernel as kernel
