@@ -1,4 +1,4 @@
-name: service_name
+name: service/service_name
 
 on:
   push:
