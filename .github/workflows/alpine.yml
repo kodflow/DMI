@@ -1,8 +1,8 @@
-name: service/service_name
+name: service/alpine
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "45 10 * * *"
   push:
     branches: [ main ]
 
@@ -30,8 +30,8 @@ jobs:
     - name: Build and push kernel
       uses: docker/build-push-action@v4
       with:
-        file: src/services/service_name/dockerfile
-        context: src/services/service_name
+        file: src/services/alpine/dockerfile
+        context: src/services/alpine
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: kodmain/service:service_name
+        tags: kodmain/service:alpine

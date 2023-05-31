@@ -33,19 +33,16 @@ help: #Pour générer automatiquement l'aide ## Display all commands available
 	echo '╚──────────────────────────────────────────────────>'
 	echo ''
 
-build: ## Build all dockers images
-	docker compose --profile kernel build
-	docker compose --profile services build
-
-publish: build ## Publish all dockers images
-	docker compose --profile kernel push
-	docker compose --profile services push
-
-run: publish ## Run command
-	docker run -ti --rm --pull=always kodmain/kernel:latest
-
 workflows: ## Generate workflows
-	@for dir in src/services/*; do \
+	@for dir in src/core/*; do \
 		service=$$(basename $$dir); \
-		sed "s/service_name/$$service/g" .sample/template.yml > .github/workflows/$$service.yml; \
+		sed "s/service_name/$$service/g" .sample/core.yml > .github/workflows/$$service.yml; \
 	done
+
+	@for dir in src/service/*; do \
+		service=$$(basename $$dir); \
+		sed "s/service_name/$$service/g" .sample/service.yml > .github/workflows/$$service.yml; \
+	done
+
+publish: workflows ## Publish modification
+	git add . && git commit -m "Update Workflow" && git push

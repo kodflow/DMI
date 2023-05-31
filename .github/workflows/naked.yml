@@ -2,7 +2,7 @@ name: service/naked
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "45 10 * * *"
   push:
     branches: [ main ]
 

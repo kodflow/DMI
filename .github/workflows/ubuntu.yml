@@ -1,8 +1,8 @@
-name: kernel
+name: service/ubuntu
 
-on:  
+on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "45 10 * * *"
   push:
     branches: [ main ]
 
@@ -30,8 +30,8 @@ jobs:
     - name: Build and push kernel
       uses: docker/build-push-action@v4
       with:
-        file: src/kernel/dockerfile
-        context: src/kernel
+        file: src/services/ubuntu/dockerfile
+        context: src/services/ubuntu
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: kodmain/kernel:latest
+        tags: kodmain/service:ubuntu

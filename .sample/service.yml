@@ -1,4 +1,4 @@
-name: service/review
+name: service/service_name
 
 on:
   schedule:
@@ -30,8 +30,8 @@ jobs:
     - name: Build and push kernel
       uses: docker/build-push-action@v4
       with:
-        file: src/services/review/dockerfile
-        context: src/services/review
+        file: src/services/service_name/dockerfile
+        context: src/services/service_name
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: kodmain/service:review
+        tags: kodmain/service:service_name
