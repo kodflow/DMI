@@ -2,7 +2,7 @@ name: service/service_name
 
 on:
   schedule:
-    - cron: "45 10 * * *"
+    - cron: "0 0 * * *"
   push:
     branches: [ main ]
 
