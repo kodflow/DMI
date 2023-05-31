@@ -30,8 +30,8 @@ jobs:
     - name: Build and push kernel
       uses: docker/build-push-action@v4
       with:
-        file: src/services/service_name/dockerfile
-        context: src/services/service_name
+        file: src/service/service_name/dockerfile
+        context: src/service/service_name
         platforms: linux/amd64,linux/arm64
         push: true
         tags: kodmain/service:service_name
