@@ -2,7 +2,7 @@ name: kernel
 
 on:  
   schedule:
-    - cron: "50 11 * * *"
+    - cron: "5 12 * * *"
   push:
     branches: [ main ]
 
