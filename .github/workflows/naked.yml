@@ -1,4 +1,4 @@
-name: naked
+name: service/naked
 
 on:
   push:
