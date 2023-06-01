@@ -1,4 +1,4 @@
-# Docker - Secure Dockerfiles
+# Dockerfiles Minimal Images
 
 This repository contains a set of secure Dockerfiles to facilitate the deployment of applications in containerized environments. 
 The provided Dockerfiles are designed with security best practices in mind to minimize potential vulnerabilities and ensure safe usage.
