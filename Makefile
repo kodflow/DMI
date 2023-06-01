@@ -35,3 +35,7 @@ help: #Pour générer automatiquement l'aide ## Display all commands available
 
 publish: ## Publish modification
 	git add . && git commit -m "Update Workflow" && git push
+
+run:
+	docker build -t $(ARGS) -f ./src/service/$(ARGS)/dockerfile /src/service/$(ARGS)/
+	docker run -ti $(ARGS)
