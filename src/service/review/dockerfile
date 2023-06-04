@@ -1,5 +1,5 @@
 FROM kodmain/core:alpine as kernel
 USER root:root
-RUN apk add --no-cache maven bash
+RUN apk add --no-cache bash maven gradle
 USER nobody:nobody
 WORKDIR /project
