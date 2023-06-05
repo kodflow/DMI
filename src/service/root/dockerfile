@@ -1,18 +1,3 @@
-FROM kodmain/core:alpine as builder
-
-USER root:root
-RUN apk add --no-cache jq maven wget unzip openjdk17
-
-WORKDIR /build/sonar-scanner-cli
-
-RUN wget -qO - https://api.github.com/repos/SonarSource/sonar-scanner-cli/releases/latest | jq -r .tag_name | xargs echo > /tmp/sonar-scanner-cli-version &&\
-	wget -qO /tmp/sonar-scanner-cli.tar.gz https://github.com/SonarSource/sonar-scanner-cli/archive/refs/tags/$(cat /tmp/sonar-scanner-cli-version).tar.gz &&\
-	tar -C /tmp -xzf /tmp/sonar-scanner-cli.tar.gz &&\
-	cd /tmp/sonar-scanner-cli-$(cat /tmp/sonar-scanner-cli-version) &&\
-	mvn clean install &&\
-	unzip -j $(find target/ | grep "zip" | awk '{print $1}') -d /build/sonar-scanner-cli
-
 FROM kodmain/core:alpine as kernel
 USER root:root
-RUN apk add --no-cache maven bash
 WORKDIR /project
