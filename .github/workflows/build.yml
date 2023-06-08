@@ -16,8 +16,8 @@ jobs:
     strategy:
         matrix:
           core_name:
-            - gateway
-            - cache
+            - alpine
+            - ubuntu
     steps:
     - name: Checkout
       uses: actions/checkout@v3
