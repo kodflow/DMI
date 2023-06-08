@@ -50,6 +50,7 @@ jobs:
           service_name:
             - review
             - root
+            - builder
     needs: core
     steps:
     - name: Checkout
