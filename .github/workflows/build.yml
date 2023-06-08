@@ -35,19 +35,19 @@ jobs:
     - name: Build Image
       uses: docker/build-push-action@v4
       with:
-        file: src/core/${{ matrix.binary_name }}/dockerfile
-        context: src/core/${{ matrix.binary_name }}
+        file: src/core/${{ matrix.core_name }}/dockerfile
+        context: src/core/${{ matrix.core_name }}
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          kodmain/core:${{ matrix.binary_name }}
-          kodmain/core:${{ matrix.binary_name }}
+          kodmain/core:${{ matrix.core_name }}
+          kodmain/core:${{ matrix.core_name }}
 
   service:
     runs-on: ubuntu-latest
     strategy:
         matrix:
-          core_name:
+          service_name:
             - review
             - root
     needs: core
@@ -69,10 +69,10 @@ jobs:
     - name: Build Image
       uses: docker/build-push-action@v4
       with:
-        file: src/service/${{ matrix.binary_name }}/dockerfile
-        context: src/service/${{ matrix.binary_name }}
+        file: src/service/${{ matrix.service_name }}/dockerfile
+        context: src/service/${{ matrix.service_name }}
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          kodmain/service:${{ matrix.binary_name }}
-          kodmain/service:${{ matrix.binary_name }}
+          kodmain/service:${{ matrix.service_name }}
+          kodmain/service:${{ matrix.service_name }}
