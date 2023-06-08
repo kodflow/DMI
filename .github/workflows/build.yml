@@ -13,6 +13,11 @@ jobs:
 
   core:
     runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          core_name:
+            - gateway
+            - cache
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -27,27 +32,24 @@ jobs:
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-
-    - name: Build alpine
+    - name: Build Image
       uses: docker/build-push-action@v4
       with:
-        file: src/core/alpine/dockerfile
-        context: src/core/alpine
+        file: src/core/${{ matrix.binary_name }}/dockerfile
+        context: src/core/${{ matrix.binary_name }}
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: kodmain/core:alpine
-
-    - name: Build ubuntu
-      uses: docker/build-push-action@v4
-      with:
-        file: src/core/ubuntu/dockerfile
-        context: src/core/ubuntu
-        platforms: linux/amd64,linux/arm64
-        push: true
-        tags: kodmain/core:ubuntu
+        tags: |
+          kodmain/core:${{ matrix.binary_name }}
+          kodmain/core:${{ matrix.binary_name }}
 
   service:
     runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          core_name:
+            - review
+            - root
     needs: core
     steps:
     - name: Checkout
@@ -64,20 +66,13 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Build root
+    - name: Build Image
       uses: docker/build-push-action@v4
       with:
-        file: src/service/root/dockerfile
-        context: src/service/root
+        file: src/service/${{ matrix.binary_name }}/dockerfile
+        context: src/service/${{ matrix.binary_name }}
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: kodmain/service:root
-
-    - name: Build review
-      uses: docker/build-push-action@v4
-      with:
-        file: src/service/review/dockerfile
-        context: src/service/review
-        platforms: linux/amd64,linux/arm64
-        push: true
-        tags: kodmain/service:review
+        tags: |
+          kodmain/service:${{ matrix.binary_name }}
+          kodmain/service:${{ matrix.binary_name }}
