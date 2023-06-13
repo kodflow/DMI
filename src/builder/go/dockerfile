@@ -1,0 +1,6 @@
+FROM kodmain/os:alpine as kernel
+USER root:root
+RUN apk add --no-cache \
+	go \
+	upx
+USER nobody:nobody

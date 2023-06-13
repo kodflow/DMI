@@ -1,0 +1,5 @@
+FROM kodmain/os:alpine as kernel
+USER root:root
+RUN apk add --no-cache \
+	python3 python3-dev
+USER nobody:nobody

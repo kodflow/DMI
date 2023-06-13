@@ -1,0 +1,5 @@
+FROM kodmain/os:alpine as kernel
+USER root:root
+RUN apk add --no-cache \
+	$(apk search openjdk | grep "^openjdk[0-9]" | sort -t 'k' -k 2 -n -u| awk -F '-' '{print $1}' | tail -n1)
+USER nobody:nobody

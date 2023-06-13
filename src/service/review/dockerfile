@@ -1,4 +1,4 @@
-FROM kodmain/core:alpine as kernel
+FROM kodmain/os:alpine as kernel
 USER root:root
 RUN apk add --no-cache bash gradle
 USER nobody:nobody

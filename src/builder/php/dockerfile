@@ -1,0 +1,5 @@
+FROM kodmain/os:alpine as kernel
+USER root:root
+RUN apk add --no-cache \
+	php composer
+USER nobody:nobody

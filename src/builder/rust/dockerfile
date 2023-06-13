@@ -1,0 +1,6 @@
+FROM kodmain/os:alpine as kernel
+USER root:root
+RUN apk add --no-cache \
+	rust rustup cargo \
+	upx
+USER nobody:nobody
