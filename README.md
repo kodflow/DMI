@@ -14,8 +14,12 @@ Before using the Dockerfiles in this repository, make sure the following items a
 
 The repository is organized as follows:
 ```text
-├── core
-	└── CORE_NAME
+├── os
+	└── OS_NAME
+		├── dockerfile
+		└── context
+└── builder
+	└── BUILDER_NAME
 		├── dockerfile
 		└── context
 └── service

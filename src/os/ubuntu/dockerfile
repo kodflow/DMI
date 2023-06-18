@@ -5,7 +5,7 @@ LABEL description="Generic Ubuntu image"
 
 # UPDATE
 RUN apt-get update && apt-get upgrade -y &&\
-    apt-get install -y nano git openssh-client zsh make wget doas bash
+    apt-get install -y nano git openssh-client zsh make wget doas bash htop
 
 # ZSH
 RUN echo "ZDOTDIR=/etc/zsh" >> /etc/zsh/zshenv
