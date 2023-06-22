@@ -37,7 +37,7 @@ run:
 
 change:
 	@echo $(ARGS)
-	@if [ false ]; then \
+	@if [ true ]; then \
 		echo "changed=true" >> $$GITHUB_OUTPUT; \
 	else \
 		echo "changed=false" >> $$GITHUB_OUTPUT; \
