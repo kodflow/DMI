@@ -36,5 +36,9 @@ run:
 	docker run -ti $(ARGS)
 
 change:
-	echo $(ARGS)
-	exit 1
+	@echo $(ARGS)
+	@if [ false ]; then \
+		echo "::set-output name=changed::true"; \
+	else \
+		echo "::set-output name=changed::false"; \
+	fi
