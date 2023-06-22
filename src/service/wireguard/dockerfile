@@ -28,7 +28,7 @@ RUN echo "wireguard" >> /etc/modules && \
 COPY --chown=root:root / /
 
 RUN apk add iproute2 iptables ip6tables
-RUN wg genkey | tee /tmp/private_key | wg pubkey > /tmp/public_key && sed -i -e 's|VOTRE_CLÉ_PRIVÉE_WG0|'$(cat /tmp/private_key)'|' -e 's|CLÉ_PUBLIQUE_DU_PAIR|'$(cat /tmp/public_key)'|' /etc/wireguard/wg0.conf
+RUN wg genkey | tee /tmp/private_key | wg pubkey > /tmp/public_key && sed -i -e 's|KEY_PRIVATE_WG0|'$(cat /tmp/private_key)'|' -e 's|KEY_PUBLIC_PEER|'$(cat /tmp/public_key)'|' /etc/wireguard/wg0.conf
 
 EXPOSE 51820
 
