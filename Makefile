@@ -36,8 +36,8 @@ run:
 	docker run -ti $(ARGS)
 
 change:
-	@if [ -n "$(filter $(ARGS),$(shell git diff --name-only HEAD^))" ]; then \
-		echo "changed=true" >> $$GITHUB_OUTPUT; \
+	@if [ -n "$$(git diff --name-only HEAD^ | grep -E 'src/.*/wireguard')" ]; then \
+		echo "changed=true" >> $$GITHUB_OUTPUT; ; \
 	else \
-		echo "changed=false" >> $$GITHUB_OUTPUT; \
+		echo "changed=false" >> $$GITHUB_OUTPUT; ; \
 	fi
