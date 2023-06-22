@@ -89,7 +89,7 @@ jobs:
     strategy:
         matrix:
           service_name:
-            - review
+            - wireguard
     needs: builder
     steps:
     - name: Checkout
