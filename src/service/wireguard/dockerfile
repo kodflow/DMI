@@ -1,0 +1,38 @@
+FROM kodmain/builder:all as kernel
+USER root:root
+
+RUN apk add --no-cache elfutils-dev \
+	linux-headers \
+	bc \
+	coredns \
+	gnupg \
+	grep \
+	iputils \
+	libcap-utils \
+	libqrencode \
+	net-tools \
+	openresolv \
+	perl
+
+WORKDIR /tmp
+
+RUN echo "wireguard" >> /etc/modules && \
+	WIREGUARD_RELEASE=$(curl -sX GET "https://api.github.com/repos/WireGuard/wireguard-tools/tags" | jq -r '.[0].name'); \
+	git clone https://git.zx2c4.com/wireguard-tools && \
+	cd wireguard-tools && \
+	git checkout "${WIREGUARD_RELEASE}" && \
+	sed -i 's|\[\[ $proto == -4 \]\] && cmd sysctl -q net\.ipv4\.conf\.all\.src_valid_mark=1|[[ $proto == -4 ]] \&\& [[ $(sysctl -n net.ipv4.conf.all.src_valid_mark) != 1 ]] \&\& cmd sysctl -q net.ipv4.conf.all.src_valid_mark=1|' src/wg-quick/linux.bash && \
+	make -C src -j$(nproc) && \
+	make -C src install
+
+COPY --chown=root:root / /
+
+RUN apk add iproute2 iptables ip6tables
+RUN wg genkey | tee /tmp/private_key | wg pubkey > /tmp/public_key && sed -i -e 's|VOTRE_CLÉ_PRIVÉE_WG0|'$(cat /tmp/private_key)'|' -e 's|CLÉ_PUBLIQUE_DU_PAIR|'$(cat /tmp/public_key)'|' /etc/wireguard/wg0.conf
+
+USER nobody:nobody
+WORKDIR /project
+ENTRYPOINT [ "gradle" ]
+CMD [ "sonar" ]
+
+EXPOSE 51820

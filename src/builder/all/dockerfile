@@ -8,6 +8,8 @@ RUN apk add --no-cache \
 	rust rustup cargo \
 	python3 python3-dev \
 	ruby ruby-dev \
+	perl \
 	$(apk search openjdk | grep "^openjdk[0-9]" | sort -t 'k' -k 2 -n -u| awk -F '-' '{print $1}' | tail -n1) \
-	upx
+	upx \
+	curl wget
 USER nobody:nobody

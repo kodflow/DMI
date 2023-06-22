@@ -1,7 +1,0 @@
-FROM kodmain/os:alpine as kernel
-USER root:root
-RUN apk add --no-cache bash gradle
-USER nobody:nobody
-WORKDIR /project
-ENTRYPOINT [ "gradle" ]
-CMD [ "sonar" ]
