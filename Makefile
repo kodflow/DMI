@@ -37,7 +37,7 @@ run:
 
 change:
 	@if [ -n "$(filter $(ARGS),$(shell git diff --name-only))" ]; then \
-		echo "changed=true" >> $${GITHUB_OUTPUT}; \
+		echo "changed=true" >> $$GITHUB_OUTPUT; \
 	else \
-		echo "changed=false" >> $${GITHUB_OUTPUT}; \
+		echo "changed=false" >> $$GITHUB_OUTPUT; \
 	fi
