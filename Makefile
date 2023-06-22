@@ -38,7 +38,7 @@ run:
 change:
 	@echo $(ARGS)
 	@if [ false ]; then \
-		echo "::set-output name=changed::true"; \
+		echo "changed=true" >> $$GITHUB_OUTPUT; \
 	else \
-		echo "::set-output name=changed::false"; \
+		echo "changed=false" >> $$GITHUB_OUTPUT; \
 	fi
