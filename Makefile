@@ -39,3 +39,7 @@ publish: ## Publish modification
 run:
 	docker build -t $(ARGS) -f ./src/service/$(ARGS)/dockerfile /src/service/$(ARGS)/
 	docker run -ti $(ARGS)
+
+change:
+	echo $(ARGS)
+	exit 1
