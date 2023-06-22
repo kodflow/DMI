@@ -37,7 +37,7 @@ run:
 
 change:
 	@if [ -n "$$(git diff --name-only HEAD^ | grep -E 'src/.*/wireguard')" ]; then \
-		echo "changed=true" >> $$GITHUB_OUTPUT; ; \
+		echo "changed=true" >> $$GITHUB_OUTPUT; \
 	else \
-		echo "changed=false" >> $$GITHUB_OUTPUT; ; \
+		echo "changed=false" >> $$GITHUB_OUTPUT; \
 	fi
