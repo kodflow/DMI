@@ -60,11 +60,11 @@ jobs:
             - go
             - java
             - nodejs
-            - perl
             - php
             - python
             - ruby
             - rust
+            - perl
     needs: os
     steps:
     - name: Checkout
