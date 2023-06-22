@@ -36,8 +36,8 @@ run:
 	docker run -ti $(ARGS)
 
 change:
-	if [ $$(git diff --quiet HEAD^ -- $(ARGS)) ]; then \
-		echo "changed=true"; \
+	@if [ -n "$(filter $(ARGS),$(shell git diff --name-only))" ]; then \
+		echo "changed=true" >> $${GITHUB_OUTPUT}; \
 	else \
-		echo "changed=false"; \
+		echo "changed=false" >> $${GITHUB_OUTPUT}; \
 	fi
