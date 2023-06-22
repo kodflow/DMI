@@ -13,5 +13,3 @@ RUN apk add --no-cache \
 	upx \
 	curl wget
 USER nobody:nobody
-
-
