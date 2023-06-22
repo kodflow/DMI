@@ -70,7 +70,7 @@ jobs:
         fetch-depth: 0
     - name: Dockerfile Change
       id: sign
-      run: src/builder/${{ matrix.builder_name }}/dockerfile
+      run: make change src/builder/${{ matrix.builder_name }}/dockerfile
     - name: Login to Docker Hub
       if: ${{ steps.sign.outputs.changed == 'true' }}
       uses: docker/login-action@v2
