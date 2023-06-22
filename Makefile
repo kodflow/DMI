@@ -1,6 +1,3 @@
-LIB_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-include $(shell readlink -f $(LIB_DIR)/functions.mk)
-
 ############################
 #╔════════════════════════╗#
 #║ DEFAULT CONFIGURATION  ║#
@@ -15,8 +12,6 @@ ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(ARGS):;@:)
 $(eval GWD=$(shell git rev-parse --show-toplevel 2>/dev/null ))
 $(eval BNAME=$(shell basename $(GWD)))
-$(shell git config core.hooksPath $(GWD)/.hooks 2>/dev/null || true)
-$(shell chmod +x $(GWD)/.hooks/*)
 
 help: #Pour générer automatiquement l'aide ## Display all commands available
 	$(eval PADDING=$(shell grep -x -E '^[a-zA-Z_-]+:.*?##[\s]?.*$$' Makefile | awk '{ print length($$1)-1 }' | sort -n | tail -n 1))
