@@ -90,7 +90,7 @@ jobs:
       if: ${{ github.event_name != 'push' || steps.sign.outputs.changed == 'true' }}
       uses: docker/build-push-action@v4
       with:
-        file: ${{ matrix.builder_name }}
+        file: src/builder/${{ matrix.builder_name }}/dockerfile
         context: src/builder/${{ matrix.builder_name }}
         platforms: linux/amd64,linux/arm64
         push: true
