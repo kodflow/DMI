@@ -27,6 +27,7 @@ The repository is organized as follows:
 		├── dockerfile
 		└── context
 ```
+
 ## Contributions
 Contributions to this repository are welcome! If you have any improvements to the existing Dockerfiles or want to add new secure Dockerfiles, please submit a pull request. Please follow security best practices while contributing to maintain code quality and security.
 
