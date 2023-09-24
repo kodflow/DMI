@@ -56,7 +56,7 @@ jobs:
           kodmain/os:${{ matrix.os_name }}
     - name: Docker Scout
       id: docker-scout
-      uses: docker/scout-action
+      uses: docker/scout-action@main
       with:
         command: cves,recommendations,compare
         to-latest: true
@@ -121,7 +121,7 @@ jobs:
           kodmain/builder:${{ matrix.builder_name }}
     - name: Docker Scout
       id: docker-scout
-      uses: docker/scout-action
+      uses: docker/scout-action@main
       with:
         command: cves,recommendations,compare
         to-latest: true
@@ -176,7 +176,7 @@ jobs:
           kodmain/service:${{ matrix.service_name }}
     - name: Docker Scout
       id: docker-scout
-      uses: docker/scout-action
+      uses: docker/scout-action@main
       with:
         command: cves,recommendations,compare
         to-latest: true
