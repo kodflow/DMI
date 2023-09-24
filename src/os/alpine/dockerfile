@@ -7,8 +7,7 @@ LABEL description="Generic alpine image"
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main"       > /etc/apk/repositories &&\
 	echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 	echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing"   >> /etc/apk/repositories &&\
-	apk update && apk upgrade --no-cache
-RUN apk add --no-cache nano git openssh zsh make shadow doas bash htop curl wget jq
+	apk update && apk upgrade --no-cache && apk add --no-cache nano git openssh zsh make shadow doas bash htop curl wget jq
 
 # ZSH
 RUN echo "ZDOTDIR=/etc/zsh" >> /etc/zsh/zshenv
