@@ -36,7 +36,7 @@ run:
 	docker run -ti $(ARGS)
 
 change:
-	@if [ -n "$$(git diff --name-only HEAD^ | grep -E 'src/.*/$(ARGS)')" ]; then \
+	@if [ -n "$$(git diff --name-only HEAD^ | grep -E 'src/.*/$(ARGS)')" ] || [ "$$BUILDER_SIGN" = "true" ] || [ "$$OS_SIGN" = "true" ] || [ "$$SERVICE_SIGN" = "true" ]; then \
 		echo "changed=true" >> $$GITHUB_OUTPUT; \
 	else \
 		echo "changed=false" >> $$GITHUB_OUTPUT; \
