@@ -14,7 +14,7 @@ RUN apk add --no-cache elfutils-dev \
 	openresolv \
 	perl
 
-RUN apk add iproute2 iptables ip6tables --no-cache
+RUN apk add --no-cache iproute2 iptables ip6tables
 
 WORKDIR /tmp
 
