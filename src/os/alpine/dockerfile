@@ -9,7 +9,7 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main"       > /etc/apk/repo
 	echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing"   >> /etc/apk/repositories &&\
 	apk update && apk upgrade --no-cache
 #RUN apk add nano
-#RUN apk add git
+RUN apk add git
 #RUN apk add openssh
 #RUN apk add rclone
 RUN apk add zsh
