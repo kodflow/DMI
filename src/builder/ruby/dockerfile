@@ -1,5 +1,6 @@
 FROM kodmain/os:alpine as kernel
 USER root:root
-RUN apk add --no-cache \
-	ruby ruby-dev 
+RUN apk add --no-cache  ruby \
+						ruby-dev && \
+	gem install uri -v '>= 0.12.2' 
 USER nobody:nobody
