@@ -108,6 +108,16 @@ jobs:
         tags: |
           kodmain/builder:${{ matrix.builder_name }}
           kodmain/builder:${{ matrix.builder_name }}
+    - name: Docker Scout
+      id: docker-scout
+      uses: docker/scout-action@dd36f5b0295baffa006aa6623371f226cc03e506
+      with:
+        command: compare
+        image: kodmain/builder:${{ matrix.builder_name }}
+        to: kodmain/builder:${{ matrix.builder_name }}
+        ignore-unchanged: true
+        only-severities: critical,high
+        token: ${{ secrets.DOCKERHUB_TOKEN }}
 
   service:
     runs-on: ubuntu-latest
