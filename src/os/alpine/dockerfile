@@ -18,6 +18,12 @@ COPY --chown=root:root /etc /etc
 RUN usermod -s /bin/zsh -d /home/nobody nobody &&\
 	usermod -s /bin/zsh root
 
+RUN ARCHITECTURE=$(uname -m) && if [ "$ARCHITECTURE" = "aarch64" ] || [ "$ARCHITECTURE" = "arm64" ]; then \
+      echo "export ARCHITECTURE=arm64" >> /etc/profile; \
+    else \
+      echo "export ARCHITECTURE=amd64" >> /etc/profile; \
+    fi;
+
 USER nobody:nobody
 WORKDIR /home/nobody
 
