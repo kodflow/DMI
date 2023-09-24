@@ -49,6 +49,17 @@ jobs:
         tags: |
           kodmain/os:${{ matrix.os_name }}
           kodmain/os:${{ matrix.os_name }}
+    - name: Docker Scout
+      id: docker-scout
+      uses: docker/scout-action@v0.23.4
+      with:
+        command: compare
+        image: kodmain/os:${{ matrix.os_name }}
+        to: kodmain/os:${{ matrix.os_name }}
+        ignore-unchanged: true
+        only-severities: critical,high
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        
 
   builder:
     runs-on: ubuntu-latest
