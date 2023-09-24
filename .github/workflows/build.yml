@@ -53,11 +53,13 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          kodmain/os:${{ matrix.os_name }}
+          ${{secrets.DOCKERHUB_USERNAME}}/os:${{ matrix.os_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
       with:
+        dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
+        dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
         command: cves,recommendations,compare
         to-latest: true
         ignore-base: true
@@ -118,11 +120,13 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          kodmain/builder:${{ matrix.builder_name }}
+          ${{secrets.DOCKERHUB_USERNAME}}/builder:${{ matrix.builder_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
       with:
+        dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
+        dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
         command: cves,recommendations,compare
         to-latest: true
         ignore-base: true
@@ -173,11 +177,13 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          kodmain/service:${{ matrix.service_name }}
+          ${{secrets.DOCKERHUB_USERNAME}}/service:${{ matrix.service_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
       with:
+        dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
+        dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
         command: cves,recommendations,compare
         to-latest: true
         ignore-base: true
