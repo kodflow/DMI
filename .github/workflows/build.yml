@@ -60,7 +60,7 @@ jobs:
       with:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
-        command: cves,recommendations
+        command: cves
         to-latest: true
         ignore-base: true
         ignore-unchanged: true
@@ -127,7 +127,7 @@ jobs:
       with:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
-        command: cves,recommendations
+        command: cves
         to-latest: true
         ignore-base: true
         ignore-unchanged: true
@@ -184,7 +184,7 @@ jobs:
       with:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
-        command: cves,recommendations
+        command: cves
         to-latest: true
         ignore-base: true
         ignore-unchanged: true
