@@ -17,10 +17,10 @@ RUN apk add make
 RUN apk add shadow
 RUN apk add doas
 #RUN apk add bash
-RUN apk add htop
-RUN apk add curl
-RUN apk add wget
-RUN apk add jq
+#RUN apk add htop
+#RUN apk add curl
+#RUN apk add wget
+#RUN apk add jq
 
 # ZSH
 RUN echo "ZDOTDIR=/etc/zsh" >> /etc/zsh/zshenv
