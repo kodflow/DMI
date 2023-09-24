@@ -1,15 +1,32 @@
 FROM kodmain/os:alpine as kernel
 USER root:root
-RUN apk add --no-cache \
-	alpine-sdk \
-	go \
-	php composer \
-	nodejs npm \
-	rust rustup cargo \
-	python3 python3-dev \
-	ruby ruby-dev \
-	perl \
-	$(apk search openjdk | grep "^openjdk[0-9]" | sort -t 'k' -k 2 -n -u| awk -F '-' '{print $1}' | tail -n1) \
-	upx \
-	curl wget
+
+# C
+RUN apk add --no-cache alpine-sdk build-base upx
+
+# GO
+RUN apk add --no-cache go
+
+# JAVA
+RUN apk add --no-cache $(apk search openjdk | grep "^openjdk[0-9]" | sort -t 'k' -k 2 -n -u| awk -F '-' '{print $1}' | tail -n1)
+
+# NODE
+RUN apk add --no-cache nodejs npm 
+
+# PERL
+RUN apk add --no-cache perl
+
+# PHP
+RUN apk add --no-cache php composer
+
+# PYTHON
+RUN apk add --no-cache python3 python3-dev py3-pip && \
+	pip install --upgrade pip
+
+# RUBY
+RUN apk add --no-cache ruby ruby-dev openssl-dev yaml-dev && \
+	gem update --system && gem update 
+
+# RUST
+RUN apk add --no-cache rust rustup cargo
 USER nobody:nobody
