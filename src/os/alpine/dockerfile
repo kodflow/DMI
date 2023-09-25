@@ -4,9 +4,9 @@ LABEL maintainer="MakingCodes <contact@making.codes>"
 LABEL description="Generic alpine image"
 
 RUN ARCHITECTURE=$(uname -m) && if [ "$ARCHITECTURE" = "aarch64" ] || [ "$ARCHITECTURE" = "arm64" ]; then \
-      echo "export ARCHITECTURE=arm64" >> /etc/zsh/zshenv; \
+      ARCHITECTURE=arm64; \
     else \
-      echo "export ARCHITECTURE=amd64" >> /etc/zsh/zshenv; \
+      ARCHITECTURE=amd64; \
     fi;
 
 # UPDATE
