@@ -3,18 +3,18 @@ FROM alpine:edge as base
 LABEL maintainer="MakingCodes <contact@making.codes>"
 LABEL description="Generic alpine image"
 
-RUN ARCHITECTURE=$(uname -m); \
-    ARCHITECTURE=$( [ "$ARCHITECTURE" = "aarch64" ] || [ "$ARCHITECTURE" = "arm64" ] && echo "arm64" || echo "amd64" )
-
 # UPDATE
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main"       > /etc/apk/repositories &&\
 	echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 	echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing"   >> /etc/apk/repositories &&\
 	apk update && apk upgrade --no-cache && apk add --no-cache nano git openssh zsh make shadow doas bash htop curl wget jq
 
+RUN ARCHITECTURE=$(uname -m); \
+    ARCHITECTURE=$( [ "$ARCHITECTURE" = "aarch64" ] || [ "$ARCHITECTURE" = "arm64" ] && echo "arm64" || echo "amd64" ); \
+    echo "ARCHITECTURE=$ARCHITECTURE" >> /etc/zsh/zshenv
+
 # ZSH
 RUN echo "ZDOTDIR=/etc/zsh" >> /etc/zsh/zshenv && \
-    echo "export ARCHITECTURE=$ARCHITECTURE" >> /etc/zsh/zshenv && \
 	wget -qO - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | zsh &&\
 	usermod -s /bin/zsh -d /home/nobody nobody &&\
 	usermod -s /bin/zsh root
