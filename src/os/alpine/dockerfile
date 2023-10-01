@@ -3,11 +3,8 @@ FROM alpine:edge as base
 LABEL maintainer="MakingCodes <contact@making.codes>"
 LABEL description="Generic alpine image"
 
-RUN ARCHITECTURE=$(uname -m) && if [ "$ARCHITECTURE" = "aarch64" ] || [ "$ARCHITECTURE" = "arm64" ]; then \
-      ARCHITECTURE=arm64; \
-    else \
-      ARCHITECTURE=amd64; \
-    fi;
+RUN ARCHITECTURE=$(uname -m); \
+    ARCHITECTURE=$( [ "$ARCHITECTURE" = "aarch64" ] || [ "$ARCHITECTURE" = "arm64" ] && echo "arm64" || echo "amd64" )
 
 # UPDATE
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main"       > /etc/apk/repositories &&\
@@ -17,9 +14,12 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main"       > /etc/apk/repo
 
 # ZSH
 RUN echo "ZDOTDIR=/etc/zsh" >> /etc/zsh/zshenv && \
+    echo "export ARCHITECTURE=$ARCHITECTURE" >> /etc/zsh/zshenv && \
 	wget -qO - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | zsh &&\
 	usermod -s /bin/zsh -d /home/nobody nobody &&\
 	usermod -s /bin/zsh root
+
+SHELL ["/bin/zsh", "-c"]
 
 COPY --chown=root:root /etc /etc
 
