@@ -1,25 +1,7 @@
 #!/usr/bin/env zsh
 
-# oh-my-zsh Bureau Theme
-
-### Fix Color
-#fg[black]="\[\033[30m\]"
-#fg[red]="\[\033[31m\]"
-#fg[green]="\[\033[32m\]"
-#fg[yellow]="\[\033[33m\]"
-#fg[blue]="\[\033[34m\]"
-#fg[magenta]="\[\033[35m\]"
-#fg[cyan]="\[\033[36m\]"
-#fg[light]="\[\033[37m\]"
 fg[gray]=$FG[059]
 fg[grey]=$FG[059]
-#fg[white]="\[\033[39m\]"
-
-#for key val in ${(kv)FG}; do
-#    echo "$val $key"
-#done
-
-### Git [±master ▾●]
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[gray]%}[ %{$fg[green]%}±%{$reset_color%}%{$fg[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[gray]%} ]%{$reset_color%}"
