@@ -60,7 +60,7 @@ jobs:
         push: true
         tags: |
           ${{secrets.DOCKERHUB_USERNAME}}/os:${{ matrix.os_name }}
-        #ghcr.io/${{ github.repository_owner }}/os:${{ matrix.os_name }}
+          ghcr.io/${{ github.repository_owner }}/os:${{ matrix.os_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
@@ -135,7 +135,7 @@ jobs:
         push: true
         tags: |
           ${{secrets.DOCKERHUB_USERNAME}}/builder:${{ matrix.builder_name }}
-        #ghcr.io/${{ github.repository_owner }}/builder:${{ matrix.builder_name }}
+          ghcr.io/${{ github.repository_owner }}/builder:${{ matrix.builder_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
@@ -178,12 +178,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Login to GitHub
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Set up QEMU
       if: ${{ github.event_name != 'push' || steps.sign.outputs.changed == 'true' }}
       uses: docker/setup-qemu-action@v3
@@ -200,7 +194,7 @@ jobs:
         push: true
         tags: |
           ${{secrets.DOCKERHUB_USERNAME}}/service:${{ matrix.service_name }}
-        #ghcr.io/${{ github.repository_owner }}/service:${{ matrix.service_name }}
+          ghcr.io/${{ github.repository_owner }}/service:${{ matrix.service_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
@@ -213,3 +207,7 @@ jobs:
         ignore-base: true
         ignore-unchanged: true
         only-fixed: true
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
