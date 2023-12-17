@@ -60,7 +60,7 @@ jobs:
         push: true
         tags: |
           ${{secrets.DOCKERHUB_USERNAME}}/os:${{ matrix.os_name }}
-          ghcr.io/${{ github.repository_owner }}/service:${{ matrix.os_name }}
+          ghcr.io/${{ github.repository_owner }}/os:${{ matrix.os_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
@@ -135,7 +135,7 @@ jobs:
         push: true
         tags: |
           ${{secrets.DOCKERHUB_USERNAME}}/builder:${{ matrix.builder_name }}
-          ghcr.io/${{ github.repository_owner }}/service:${{ matrix.builder_name }}
+          ghcr.io/${{ github.repository_owner }}/builder:${{ matrix.builder_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
