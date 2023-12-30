@@ -67,7 +67,7 @@ jobs:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
         command: cves
-        image: ${{secrets.DOCKERHUB_USERNAME}}/os:${{ matrix.os_name }}
+        image: ghcr.io/${{ github.repository_owner }}/os:${{ matrix.os_name }}
         to-latest: true
         ignore-base: true
         ignore-unchanged: true
@@ -141,7 +141,7 @@ jobs:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
         command: cves
-        image: ${{secrets.DOCKERHUB_USERNAME}}/builder:${{ matrix.builder_name }}
+        image: ghcr.io/${{ github.repository_owner }}/builder:${{ matrix.builder_name }}
         to-latest: true
         ignore-base: true
         ignore-unchanged: true
@@ -199,7 +199,7 @@ jobs:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
         command: cves
-        image: ${{secrets.DOCKERHUB_USERNAME}}/service:${{ matrix.service_name }}
+        image: ghcr.io/${{ github.repository_owner }}/service:${{ matrix.service_name }}
         to-latest: true
         ignore-base: true
         ignore-unchanged: true
