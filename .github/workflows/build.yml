@@ -21,10 +21,10 @@ jobs:
     outputs:
       OS_SIGN: ${{ steps.sign.outputs.changed }}
     steps:
-    - name: Cancel Previous Runs
-      uses: styfle/cancel-workflow-action@0.11.0
-      with:
-        access_token: ${{ github.token }}
+    - uses: n1hility/cancel-previous-runs@v3
+      with: 
+        token: ${{ secrets.GITHUB_TOKEN }}
+        workflow: my-heavy-workflow.yml
     - name: Checkout
       uses: actions/checkout@v4
       with:
