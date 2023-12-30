@@ -49,8 +49,7 @@ jobs:
         context: src/os/${{ matrix.os_name }}
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: |
-          ghcr.io/${{ github.repository_owner }}/os:${{ matrix.os_name }}
+        tags: ghcr.io/${{ github.repository_owner }}/os:${{ matrix.os_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
@@ -114,8 +113,7 @@ jobs:
         context: src/builder/${{ matrix.builder_name }}
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: |
-          ghcr.io/${{ github.repository_owner }}/builder:${{ matrix.builder_name }}
+        tags: ghcr.io/${{ github.repository_owner }}/builder:${{ matrix.builder_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
@@ -169,8 +167,7 @@ jobs:
         context: src/service/${{ matrix.service_name }}
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: |
-          ghcr.io/${{ github.repository_owner }}/service:${{ matrix.service_name }}
+        tags: ghcr.io/${{ github.repository_owner }}/service:${{ matrix.service_name }}
     - name: Docker Scout
       id: docker-scout
       uses: docker/scout-action@main
