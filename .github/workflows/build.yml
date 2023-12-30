@@ -24,7 +24,7 @@ jobs:
     - uses: n1hility/cancel-previous-runs@v3
       with: 
         token: ${{ secrets.GITHUB_TOKEN }}
-        workflow: my-heavy-workflow.yml
+        workflow: build.yml
     - name: Checkout
       uses: actions/checkout@v4
       with:
