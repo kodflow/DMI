@@ -23,8 +23,7 @@ RUN apk add --no-cache php composer
 RUN apk add --no-cache python3 python3-dev pipx
 
 # RUBY
-RUN apk add --no-cache ruby ruby-dev build-base openssl-dev yaml-dev libffi-dev readline-dev zlib-dev && \
-	gem update --system && gem update 
+RUN apk add --no-cache ruby ruby-dev build-base openssl-dev yaml-dev libffi-dev readline-dev zlib-dev
 
 # RUST
 RUN apk add --no-cache rust rustup cargo
