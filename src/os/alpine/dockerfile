@@ -23,8 +23,6 @@ SHELL ["/bin/zsh", "-c"]
 
 COPY --chown=root:root /etc /etc
 
-RUN echo 3 > /proc/sys/net/ipv4/tcp_fastopen # Enable TCP Fast Open
-
 USER nobody:nobody
 WORKDIR /home/nobody
 
