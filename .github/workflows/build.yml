@@ -58,7 +58,7 @@ jobs:
     - name: Docker Scout
       if: ${{ github.event_name != 'push' || steps.sign.outputs.changed == 'true' }}
       id: docker-scout
-      uses: docker/scout-action@main
+      uses: docker/scout-action@v1
       with:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
@@ -127,7 +127,7 @@ jobs:
     - name: Docker Scout
       if: ${{ github.event_name != 'push' || steps.sign.outputs.changed == 'true' }}
       id: docker-scout
-      uses: docker/scout-action@main
+      uses: docker/scout-action@v1
       with:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
@@ -186,7 +186,7 @@ jobs:
     - name: Docker Scout
       if: ${{ github.event_name != 'push' || steps.sign.outputs.changed == 'true' }}
       id: docker-scout
-      uses: docker/scout-action@main
+      uses: docker/scout-action@v1
       with:
         dockerhub-user: ${{secrets.DOCKERHUB_USERNAME}}
         dockerhub-password: ${{secrets.DOCKERHUB_TOKEN}}
